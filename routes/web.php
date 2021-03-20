@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AddUserController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,29 +18,52 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/landing',function(){
-    return view('landing');
-});
-Route::get('/about',function(){
-    return view('about');
-});
-Route::get('/article',function(){
-    return view('article');
-});
+// Route::get('/about', function () {
+//     return view('about',[
+//         'articles'=>App\Models\Article::latest()->get()
+//         ]);
+// });
+// Route::get('/landing',function(){
+//     return view('landing');
+// });
+
+// Route::get('/log', function () {
+//          return view('adminlogin');
+//      });
+    // Route::get('/dashboard', function () {
+    //         return view('dashboard');
+    //      });
+
+
+Route::get('/',[FrontendController::class,'Welcome'])->name('welcome');
+Route::get('/about',[FrontendController::class,'About'])->name('about');
+Route::get('/article',[FrontendController::class,'Article'])->name('article');
+//Route::get('/article/{article}',[FrontendController::class,'show'])->name('article');
+//Route::get('/articles/{article}',[ArticlesController::class,'show'])->name('article');
+Route::get('/articles/{article}',"App\Http\Controllers\ArticlesController@show");
+
+Route::get('/login',[UsersController::class,'Login'])->name('login');
+Route::post('/check',[UsersController::class,'check'])->name('check');
+
+Route::get('/dashboard',[AdminController::class,'Register'])->name('register');
+Route::post('/save',[AdminController::class,'save'])->name('save');
+Route::get('/page1',[AdminController::class,'page1']);
+Route::get('/page2',[AdminController::class,'page2']);
+Route::get('/page3',[AdminController::class,'page3']);
+
+
+Route::get('/add-user',[AddUserController::class,'AddUser']);
+Route::Post('/create-post',[AddUserController::class,'createUser'])->name('user.create');
+Route::get('/users',[AddUserController::class,'getUser']);
+Route::get('/users/{id}',[AddUserController::class,'getUserById']);
+Route::get('/delete-user/{id}',[AddUserController::class,'deleteUser']);
+Route::get('/edit-user/{id}',[AddUserController::class,'editUser']);
+Route::POST('/update-user',[AddUserController::class,'updateUser'])->name('user.update');
 
 
 
-Route::get('/login',[StudentController::class,'Login'])->name('login');
-Route::get('/register',[StudentController::class,'Register'])->name('register');
-Route::post('/save',[StudentController::class,'save'])->name('save');
-Route::post('/check',[StudentController::class,'check'])->name('check');
-
-
-Route::get('/page1',[StudentController::class,'page1']);
-Route::get('/page2',[StudentController::class,'page2']);
-Route::get('/page3',[StudentController::class,'page3']);
+// Route::get('/page1',[StudentController::class,'page1']);
+// Route::get('/page2',[StudentController::class,'page2']);
+// Route::get('/page3',[StudentController::class,'page3']);
 // Route::get('/page1',"App\Http\Controllers\PostController@page1");
 // Route::get('/page2',"App\Http\Controllers\PostController@page2");

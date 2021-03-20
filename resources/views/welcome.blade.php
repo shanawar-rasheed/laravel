@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('Layouts.layout1')
 
 @section('content')
     @section('header')
@@ -12,6 +12,4 @@
         </div>
     </div>
     @endsection
-
-
 @endsection

@@ -1,4 +1,4 @@
-@extends('navbar')
+@extends('Layouts.layout2')
 @section('registersection')
 <!DOCTYPE html>
 <html lang="en">
@@ -10,14 +10,14 @@
     <title>Login</title>
 </head>
 
-<body  background="images/banner.jpg">
+<body  background="images/admin.jpg">
     
     <div class="container" style="margin-top:45px;">
     
         <div class="row">
         
             <div class="col-md-4 offset-md-4 ">
-            <h2>Registration Form</h2>
+            <h2  class="text-white">Add Users</h2>
                 <form action="{{route('save')}}" method="post">
                 @if(Session::get('success'))
                     <div class="alert alert-success">
@@ -31,17 +31,25 @@
                     @endif
                
                 @csrf
+                <div class="form-group">
+                    <label  class="text-white" for="role_id">Role ID</label>
+                    <input class="form-control" name="role_id" type="text" placeholder="Please Enter Role ID" >
+                </div>
+                <div class="form-group">
+                    <label class="text-white" for="role_name">Role Name</label>
+                    <input class="form-control" name="role_name" type="text" placeholder="Please Enter Role Name" >
+                </div>
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input class="form-control" name="name" type="text" placeholder="Please Enter Your Name" >
+                        <label class="text-white" for="name">Name</label>
+                        <input class="form-control" name="name" type="text" placeholder="Please Enter Name" >
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input class="form-control" name="email" type="email" autocomplete="off" placeholder="Please Enter Your Email" >
+                        <label class="text-white" for="email">Email</label>
+                        <input class="form-control" name="email" type="email" autocomplete="off" placeholder="Please Enter Email" >
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input class="form-control" name="password" type="password" autocomplete="off" placeholder="Please Enter Your Password" >
+                        <label class="text-white" for="password">Password</label>
+                        <input class="form-control" name="password" type="password" autocomplete="off" placeholder="Please Enter Password" >
                     </div>
                     <button class="btn btn-success btn-block" type="submit">Register</button>
                     <a href="{{route('login')}}">Click  Me To Login</a>
