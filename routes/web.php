@@ -40,7 +40,16 @@ Route::get('/about',[FrontendController::class,'About'])->name('about');
 Route::get('/article',[FrontendController::class,'Article'])->name('article');
 //Route::get('/article/{article}',[FrontendController::class,'show'])->name('article');
 //Route::get('/articles/{article}',[ArticlesController::class,'show'])->name('article');
-Route::get('/articles/{article}',"App\Http\Controllers\ArticlesController@show");
+
+// Route::post('/articles',"App\Http\Controllers\ArticlesController@Store");
+Route::Post('/articles',[ArticlesController::class,'Store'])->name('art.store');
+Route::get('/articles/create',"App\Http\Controllers\ArticlesController@Create");
+
+Route::get('/articles/{article}',"App\Http\Controllers\ArticlesController@show")->name('art.show');
+Route::get('/articles/{article}/edit',"App\Http\Controllers\ArticlesController@Edit");
+Route::put('/articles/{article}',"App\Http\Controllers\ArticlesController@Update");
+//Route::put('/articles',[ArticlesController::class,'Update'])->name('art.update');
+
 
 Route::get('/login',[UsersController::class,'Login'])->name('login');
 Route::post('/check',[UsersController::class,'check'])->name('check');

@@ -11,7 +11,7 @@ class FrontendController extends Controller
     {
        //return view('about');
        return view('about',[
-         'articles'=>Article::latest()->get()
+         'articles'=>Article::take(3)->latest()->get()
          ]);
     }
     public function Article()
